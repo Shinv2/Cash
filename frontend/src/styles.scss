@@ -1,0 +1,92 @@
+// /* You can add global styles to this file, and also import other style files */
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// /* Global styles */
+// html, body { 
+//   height: 100%; 
+//   margin: 0;
+// }
+
+// body { 
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+//   background-color: #fafafa;
+// }
+
+// .spacer {
+//   flex: 1 1 auto;
+// }
+
+// // .content {
+// //   padding: 20px;
+// //   max-width: 1200px;
+// //   margin: 0 auto;
+// // }
+
+// .active {
+//   background-color: rgba(255, 255, 255, 0.1);
+// }
+
+// /* Utility classes */
+// .full-width {
+//   width: 100%;
+// }
+
+// .text-center {
+//   text-align: center;
+// }
+
+// .mt-1 { margin-top: 8px; }
+// .mt-2 { margin-top: 16px; }
+// .mt-3 { margin-top: 24px; }
+// .mb-1 { margin-bottom: 8px; }
+// .mb-2 { margin-bottom: 16px; }
+// .mb-3 { margin-bottom: 24px; }
+
+
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Global styles */
+html, body { 
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+body { 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fafafa;
+  position: relative;
+  min-height: 100vh;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  min-height: calc(100vh - 64px); /* Subtract toolbar height */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Utility classes */
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }

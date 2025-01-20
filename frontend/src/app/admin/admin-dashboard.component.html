@@ -1,0 +1,147 @@
+<!-- test not working -->
+
+<mat-toolbar color="primary">
+  <span>Admin Dashboard</span>
+  <span class="spacer"></span>
+
+  <!-- User Management -->
+  <button mat-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>people</mat-icon>
+    User Management
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item routerLink="/admin/users">
+      <mat-icon>list</mat-icon>
+      <span>View Users</span>
+    </button>
+    <button mat-menu-item routerLink="/admin/carts">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>View User Carts</span>
+    </button>
+  </mat-menu>
+
+  <!-- Product Management -->
+  <button mat-button [matMenuTriggerFor]="productMenu">
+    <mat-icon>inventory_2</mat-icon>
+    Product Management
+  </button>
+  <mat-menu #productMenu="matMenu">
+    <button mat-menu-item routerLink="/admin/products/add">
+      <mat-icon>add</mat-icon>
+      <span>Add Product</span>
+    </button>
+    <button mat-menu-item routerLink="/admin/products">
+      <mat-icon>edit</mat-icon>
+      <span>Edit Products</span>
+    </button>
+  </mat-menu>
+
+  <!-- Profile -->
+  <button mat-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+    <!-- {{ username }} -->
+  </button>
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="admin-dashboard">
+  <h2>Admin Dashboard</h2>
+  
+  <!-- Users Management -->
+  <div class="section">
+    <h3>Users Management</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>
+            <button (click)="editUser(user)">Edit</button>
+            <button (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Products Management -->
+  <div class="section">
+    <h3>Products Management</h3>
+    <button (click)="showAddProductForm()" *ngIf="!showForm">Add New Product</button>
+    <table *ngIf="!showForm">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>₮{{product.price}}</td>
+          <td>{{product.stock}}</td>
+          <td>
+            <button (click)="editProduct(product)">Edit</button>
+            <button (click)="deleteProduct(product.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Add Product Form -->
+    <div class="add-product-form" *ngIf="showForm">
+      <h3>Add New Product</h3>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Product Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" id="price" formControlName="price" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" formControlName="stock" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl">Image URL</label>
+          <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control">
+        </div>
+
+        <div class="button-group">
+          <button type="submit" [disabled]="!productForm.valid">Add Product</button>
+          <button type="button" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
