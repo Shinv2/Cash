@@ -1,43 +1,54 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { CartComponent } from './cart/cart.component';
+import { ProductManagementComponent } from './admin/product-management/product-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { OrderHistoryComponent } from './admin/order-history/order-history.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { AdminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   { 
-    path: '', 
-    redirectTo: '/products', 
-    pathMatch: 'full' 
-  },
-  {
     path: 'login',
-    loadComponent: () => import('./auth/login/login.component')
-      .then(m => m.LoginComponent)
+    component: LoginComponent
   },
   {
     path: 'register',
-    loadComponent: () => import('./auth/register/register.component')
-      .then(m => m.RegisterComponent)
+    component: RegisterComponent
   },
   {
     path: 'products',
-    loadComponent: () => import('./products/product-list/product-list.component')
-      .then(m => m.ProductListComponent),
+    component: ProductListComponent
+  },
+  {
+    path: 'product-management',
+    component: ProductManagementComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    loadComponent: () => import('./cart/cart.component')
-      .then(m => m.CartComponent),
+    component: CartComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'admin',
-    loadComponent: () => import('./admin/admin-dashboard/admin-dashboard.component')
-      .then(m => m.AdminDashboardComponent),
-    canActivate: [AuthGuard, AdminGuard]
+    path: 'checkout',
+    loadComponent: () => import('./checkout/checkout.component').then(m => m.CheckoutComponent),
+    canActivate: [AuthGuard]
   },
-  { 
-    path: '**', 
-    redirectTo: '/products' 
+  {
+    path: 'users',
+    component: UserManagementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'order-history',
+    component: OrderHistoryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full'
   }
 ];

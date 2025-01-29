@@ -29,7 +29,7 @@ export class CartService {
           this.cartItemsSubject.next([...this.cartItems]);
         }
       },
-      error: (error) => console.error('Error loading cart items:', error)
+      error: (error) => console.error('Error loading order items:', error)
     });
   }
 

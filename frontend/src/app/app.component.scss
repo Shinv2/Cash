@@ -1,11 +1,6 @@
-// jishee
-
-@use '@angular/material' as mat;
-
 :host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: block;
+  height: 100vh;
 }
 
 mat-toolbar {
@@ -14,6 +9,7 @@ mat-toolbar {
   left: 0;
   right: 0;
   z-index: 2;
+  height: 64px;
   
   .mat-icon {
     margin-right: 8px;
@@ -31,44 +27,121 @@ mat-toolbar {
   }
 }
 
-.content {
+.flex {
+  display: flex;
+  height: 100%;
+  background: #fff;
+}
+
+.sidebar {
+  transition: width 0.3s ease;
+
+  height: 100%;
+  &.sidebar-collapsed {
+    width: 60px;
+  }
+}
+
+.main-content {
   flex: 1;
-  box-sizing: border-box;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: margin-left 0.3s ease;
+  padding: 0 2%;
+  .main-content-sectionN{
+    padding: 20px;
+  }
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-::ng-deep .app-menu-panel {
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.username {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+::ng-deep .profile-menu {
+  padding: 0 !important;
+}
+
+.profile-menu-content {
   min-width: 200px;
-  
-  .mat-mdc-menu-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    
-    mat-icon {
-      margin-right: 8px;
+
+  .menu-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 8px;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+          font-size: 24px;
+          width: 24px;
+          height: 24px;
+          color: #666;
+        }
+      }
+
+      .user-details {
+        .name {
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+
+        .email {
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+
+  .menu-items {
+    button {
+      width: 100%;
+      padding: 8px 16px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      mat-icon {
+        color: rgba(0, 0, 0, 0.54);
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
     }
   }
 }
 
-.mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-// Responsive adjustments utasnii
 @media (max-width: 599px) {
-  // .content {
-  //   margin-top: 56px; // Mobile toolbar height
-  //   padding: 16px;
-  // }
+  .content {
+    margin-top: 56px;
+    padding: 16px;
+  }
   
   mat-toolbar {
     .hide-small {

@@ -1,0 +1,28 @@
+<ng-container class="navbar-container">
+  <mat-toolbar color="primary">
+
+    <span class="spacer"></span>
+      <button mat-icon-button class="small-icon-button" [matMenuTriggerFor]="profileMenu">
+        <mat-icon class="profile-icon">account_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-menu #profileMenu="matMenu" class="profile-menu">
+    <div class="profile-header">
+      <div class="profile-image">
+        <img [src]="authService.isAdmin() ? 'https://cdn-icons-png.flaticon.com/128/3135/3135715.png' : 'https://cdn-icons-png.flaticon.com/128/1999/1999625.png'" alt="Profile">
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">{{ authService.getCurrentUser()?.username }}</div>
+        <div class="profile-email">{{ authService.getCurrentUser()?.email }}</div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</ng-container>

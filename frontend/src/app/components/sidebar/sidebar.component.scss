@@ -1,0 +1,321 @@
+.sidebar-container {
+  width: 260px;
+  height: 100%;
+  background-color: #fff;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &.sidebar-collapsed {
+    width: 70px;
+    
+    .nav-label {
+      display: none;
+    }
+    
+    .brand-logo {
+      padding: 8px;
+      
+      img {
+        width: 44px;
+        height: 44px;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  background-color:  #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.sidebar-content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.brand-logo {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+}
+
+mat-nav-list {
+  padding-top: 0;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a[mat-list-item] {
+  margin: 4px 8px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.87);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(63, 81, 181, 0.04);
+  }
+  
+  &.active {
+    background-color: rgba(63, 81, 181, 0.12);
+    color: #3f51b5;
+    font-weight: 500;
+    
+    mat-icon {
+      color: #3f51b5;
+    }
+  }
+  
+  &:not(.active) {
+    opacity: 0.8;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  mat-icon {
+    margin-right: 16px;
+    color: rgba(0, 0, 0, 0.54);
+    transition: color 0.2s ease;
+  }
+  
+  .nav-label {
+    font-size: 14px;
+  }
+}
+
+:host ::ng-deep {
+  .mat-mdc-list-item {
+    margin: 4px 8px;
+    border-radius: 4px;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04);
+    }
+  }
+}
+.mdc-list{
+  padding: 0;
+}
+mat-divider {
+  margin: 8px 0;
+  opacity: 0.6;
+}
+
+//nemsen
+
+button[mat-icon-button] {       
+  // width: 40px;
+  // height: 40px;
+  // border-radius: 50%;
+  // background-color: #3f51b5;
+
+  mat-icon {
+    // color: white;
+    // border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+  }
+  &:hover {
+    background-color: #303f9f;
+  }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+button{
+border: none;
+cursor: pointer;
+}
+
+.navbar-container {
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 1000;
+
+// .spacer {
+//   flex: 1 1 auto;
+// }
+
+// .profile-button {
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+  
+//   .username {
+//     margin-left: 4px;
+//   }
+// }
+}
+
+mat-toolbar {
+display: flex;
+justify-content: flex-end;
+padding: 0 16px;
+}
+
+.spacer {
+flex: 1;
+}
+
+.small-icon-button {
+ width: 40px ;
+ height: 40px;
+ line-height: 40px;
+ padding: 0px;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+
+ .profile-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+ }
+ .mat-mdc-button-touch-target {
+    width: 40px ;
+    height: 40px ;
+ }
+}
+
+::ng-deep .profile-menu {
+min-width: 150px !important;
+
+.mat-mdc-menu-content {
+  padding: 0 !important;
+}
+}
+
+.profile-section {
+  padding: 16px;
+  // border-radius: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-email {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-header {
+padding: 16px;
+border-radius: 12px;
+background: #f5f5f5;
+text-align: center;
+border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-image {
+width: 64px;
+height: 64px;
+margin: 0 auto 12px;
+border-radius: 50%;
+overflow: hidden;
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+}
+
+.profile-name {
+font-size: 16px;
+font-weight: 500;
+color: rgba(0, 0, 0, 0.87);
+margin: 0;
+text-align: center;
+}
+
+button[mat-menu-item] {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 12px 16px;
+
+mat-icon {
+  margin: 0;
+}
+}
+
+::ng-deep .profile-menu {
+min-width: 150px !important;
+}

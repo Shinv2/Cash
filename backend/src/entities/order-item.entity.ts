@@ -2,6 +2,13 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Cart } from './cart.entity';
 import { Product } from './product.entity';
 
+// Define payment method constants
+export const PaymentMethod = {
+  CASH: 10,
+  DEBIT: 20,
+  QRIS: 30
+} as const;
+
 @Entity('order_items')
 export class OrderItem {
   @PrimaryGeneratedColumn()
@@ -24,6 +31,12 @@ export class OrderItem {
 
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
+
+
+  //nemsen
+  @Column('int')
+  payment_method: number;
+  //
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

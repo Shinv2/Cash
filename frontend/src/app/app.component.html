@@ -1,46 +1,17 @@
+<ng-container *ngIf="authService.isLoggedIn(); else loggedOut">
 
-<!--jishee -->
-<!-- <mat-toolbar color="primary">
-  <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>{{title}}</span>
-  <span class="spacer"></span>
-  
-  <ng-container *ngIf="!authService.isLoggedIn()">
-    <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
-    <a mat-button routerLink="/register" routerLinkActive="active">Register</a>
-  </ng-container>
-  
-  <ng-container *ngIf="authService.isLoggedIn()">
-    <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
-    <a mat-button routerLink="/cart" routerLinkActive="active">Cart</a>
-    <ng-container *ngIf="authService.isAdmin()">
-      <a mat-button routerLink="/admin" routerLinkActive="active">Admin Panel</a>
-    </ng-container>
-    <button mat-button (click)="logout()">Logout</button>
-  </ng-container>
-</mat-toolbar>
+  <main class="flex">
+    <div class="sidebar sectionA">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-content sectionB">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</ng-container>
 
-<mat-menu #menu="matMenu" class="app-menu-panel">
-  <ng-container *ngIf="authService.isLoggedIn()">
-    <button mat-menu-item routerLink="/products">
-      <mat-icon>shopping_bag</mat-icon>
-      <span>Products</span>
-    </button>
-    <button mat-menu-item routerLink="/cart">
-      <mat-icon>shopping_cart</mat-icon>
-      <span>Cart</span>
-    </button>
-    <ng-container *ngIf="authService.isAdmin()">
-      <button mat-menu-item routerLink="/admin">
-        <mat-icon>admin_panel_settings</mat-icon>
-        <span>Admin Panel</span>
-      </button>
-    </ng-container>
-  </ng-container>
-</mat-menu>
-
-<main class="content">
-  <router-outlet></router-outlet>
-</main> -->
+<ng-template #loggedOut>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</ng-template>

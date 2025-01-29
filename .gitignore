@@ -1,6 +1,12 @@
-# compiled output
-/dist
-/node_modules
+# Backend
+backend/dist/
+backend/node_modules/
+backend/.env
+
+# Frontend
+frontend/dist/
+frontend/node_modules/
+frontend/.env
 
 # Logs
 logs
@@ -16,10 +22,10 @@ lerna-debug.log*
 
 # Tests
 /coverage
-/.nyc_output
+.nyc_output/
 
 # IDEs and editors
-/.idea
+.idea/
 .project
 .classpath
 .c9/
@@ -28,9 +34,6 @@ lerna-debug.log*
 *.sublime-workspace
 .vscode/*
 
-# ENV files
+# Root level
+/node_modules
 .env
-
-# Frontend
-frontend/dist
-frontend/node_modules

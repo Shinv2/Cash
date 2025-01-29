@@ -34,7 +34,7 @@ import { CartItem } from '../core/models/cart.model';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
-  displayedColumns: string[] = ['image', 'name', 'price', 'quantity', 'total', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'unit_price', 'quantity', 'total', 'actions'];
   private cartSubscription: Subscription;
   isLoading = false;
   errorMessage = '';
@@ -71,15 +71,14 @@ export class CartComponent implements OnInit, OnDestroy {
           this.cartItems = [...items];
         },
         error: (error: Error) => {
-          this.errorMessage = 'Failed to load cart items. Please try again.';
-          this.showError('Error loading cart items');
+          this.errorMessage = 'Failed to load order. Please try again.';
+          this.showError('Error loading order');
         }
       });
   }
 
   removeFromCart(item: CartItem) {
     if (!item || !item.product_id) {
-      this.showError('Invalid item');
       return;
     }
 
@@ -91,13 +90,13 @@ export class CartComponent implements OnInit, OnDestroy {
       .pipe(finalize(() => this.isLoading = false))
       .subscribe({
         next: () => {
-          this.showSuccess('Item removed from cart');
+          this.showSuccess('Item removed from order');
         },
         error: (error: Error) => {
           // Revert the optimistic update on error
           this.loadCartItems();
           console.error('Error removing item:', error);
-          this.showError('Error removing item from cart');
+          this.showError('Error removing item from order');
         }
       });
   }
@@ -167,20 +166,7 @@ export class CartComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isLoading = true;
-    this.cartService.checkout()
-      .pipe(finalize(() => this.isLoading = false))
-      .subscribe({
-        next: () => {
-          this.showSuccess('Checkout successful');
-          this.cartItems = []; // Clear items immediately
-          this.router.navigate(['/products']);
-        },
-        error: (error: unknown) => {
-          console.error('Checkout error:', error);
-          this.showError('Error during checkout');
-        }
-      });
+    this.router.navigate(['/checkout']);
   }
 
   private showError(message: string) {

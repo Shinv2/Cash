@@ -78,10 +78,13 @@ import { EditProductDialogComponent } from './edit-product-dialog.component';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
     }
     table {
       width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:none;
+      border:1px solid #ccc;
     }
   `]
 })

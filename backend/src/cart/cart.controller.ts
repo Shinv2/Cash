@@ -45,10 +45,7 @@ export class CartController {
     return this.cartService.removeFromCart(req.user.id, parseInt(productId, 10));
   }
 
-  @Delete('clear')
-  async clearCart(@Request() req) {
-    return this.cartService.clearCart(req.user.id);
-  }
+
 
   @Post('purchase')
   async purchaseCart(@Request() req, @Body() purchaseDto: PurchaseDto) {

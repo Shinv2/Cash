@@ -16,7 +16,7 @@ import { CartService } from '../../core/services/cart.service';
   ],
   template: `
     <div class="cart-management">
-      <h3>User Cart Management</h3>
+      <h3>User Order Management</h3>
       
       <table mat-table [dataSource]="userCarts" class="mat-elevation-z8">
         <!-- User Column -->
@@ -87,7 +87,7 @@ export class CartManagementComponent implements OnInit {
         this.userCarts = carts;
       },
       error: (error) => {
-        console.error('Error loading user carts:', error);
+        console.error('Error loading user order:', error);
       }
     });
   }
@@ -97,6 +97,6 @@ export class CartManagementComponent implements OnInit {
   }
 
   viewCartDetails(cart: any) {
-    console.log('View cart details:', cart);
+    console.log('View order details:', cart);
   }
 }

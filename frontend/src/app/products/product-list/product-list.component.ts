@@ -1,18 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../core/services/auth.service';
-import { CartService } from '../../core/services/cart.service';
 import { ProductService } from '../../core/services/product.service';
+import { CartService } from '../../core/services/cart.service';
+import { AuthService } from '../../core/services/auth.service';
 import { Product } from '../../core/models/product.model';
+import { CartComponent } from '../../cart/cart.component';
+import { Subscription } from 'rxjs';
+import { CartItem } from '../../core/models/cart.model';
 
 @Component({
   selector: 'app-product-list',
@@ -21,45 +20,41 @@ import { Product } from '../../core/models/product.model';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    CartComponent
   ]
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   cartItemCount: number = 0;
-  username: string = '';
   private cartSubscription: Subscription;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
     public authService: AuthService,
-    public router: Router
+    private router: Router
   ) {
-    this.username = this.authService.getCurrentUser()?.username || '';
-    this.cartSubscription = this.cartService.cartUpdated.subscribe(() => {
-      this.updateCartCount();
+    // Subscribe to cart updates to track items
+    this.cartSubscription = this.cartService.cartUpdated.subscribe((items: CartItem[]) => {
+      this.cartItemCount = items.length;
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadProducts();
-    this.updateCartCount();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
   }
 
-  loadProducts() {
+  loadProducts(): void {
     this.productService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
@@ -70,20 +65,23 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateCartCount() {
-    this.cartItemCount = this.cartService.getCartItemCount();
-  }
-
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     if (this.authService.isAdmin()) return;  
     this.cartService.addToCart(product).subscribe({
       next: () => {
         // Cart update will be handled by the subscription
       },
       error: (error) => {
-        console.error('Error adding to cart:', error);
+        console.error('Error adding to order:', error);
       }
     });
+  }
+
+  // Helper method to check if cart should be visible
+  shouldShowCart(): boolean {
+    return this.cartItemCount > 0 && 
+           this.authService.isLoggedIn() && 
+           !this.authService.isAdmin();
   }
 
   logout() {

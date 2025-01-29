@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // If user is already logged in, redirect to home
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/products']);
     }
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(email, password).subscribe({
         next: (response) => {
           // Handle successful login
-          this.router.navigate(['/']);
+          this.router.navigate(['/products']);
         },
         error: (error) => {
           this.errorMessage = error.error.message || 'Login failed. Please try again.';

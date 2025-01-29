@@ -1,0 +1,128 @@
+button[mat-icon-button] {       
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3f51b5;
+ 
+    mat-icon {
+      color: white;
+      border-color: white;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 50%;
+    }
+    &:hover {
+      background-color: #303f9f;
+    }
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+button{
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  
+  // .spacer {
+  //   flex: 1 1 auto;
+  // }
+
+  // .profile-button {
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 8px;
+    
+  //   .username {
+  //     margin-left: 4px;
+  //   }
+  // }
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.small-icon-button {
+   width: 40px ;
+   height: 40px;
+   line-height: 40px;
+   padding: 0px;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+
+   .profile-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+   }
+   .mat-mdc-button-touch-target {
+      width: 40px ;
+      height: 40px ;
+   }
+}
+
+::ng-deep .profile-menu {
+  min-width: 150px !important;
+  
+  .mat-mdc-menu-content {
+    padding: 0 !important;
+  }
+}
+
+.profile-header {
+  padding: 16px;
+  background: #f5f5f5;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  text-align: center;
+}
+
+button[mat-menu-item] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  
+  mat-icon {
+    margin: 0;
+  }
+}

@@ -109,7 +109,7 @@ export class CartService {
       return this.getCart(userId);
     } catch (error) {
       console.error('Error adding item to cart:', error);
-      throw new InternalServerErrorException('Failed to add item to cart: ' + error.message);
+      throw new InternalServerErrorException('Failed to add item to order: ' + error.message);
     }
   }
 
@@ -174,7 +174,7 @@ export class CartService {
 
       return this.getCart(userId);
     } catch (error) {
-      console.error('Error updating cart item quantity:', error);
+      console.error('Error updating order item quantity:', error);
       throw new InternalServerErrorException('Failed to update quantity: ' + error.message);
     }
   }
@@ -187,7 +187,7 @@ export class CartService {
     try {
       const cart = await this.getCart(userId);
       if (!cart || !cart.items?.length) {
-        throw new BadRequestException('Cart is empty');
+        throw new BadRequestException('Order is empty');
       }
 
       // First, create order items for history

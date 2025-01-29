@@ -1,25 +1,46 @@
-
-<div class="product-container">
-  <div class="product-grid">
-    @for (product of products; track product.id) {
-      <mat-card class="product-card">
-        <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
-        <mat-card-content>
-          <p class="price">₮{{product.price | number:'1.0-0'}}</p>
-          <h3>{{product.name}}</h3>
-          <p class="stock">{{product.quantity > 0 ? product.quantity + ' in stock' : 'Out of stock'}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          @if (!authService.isAdmin()) {
-            <button mat-raised-button color="primary" 
-                    [disabled]="product.quantity === 0"
-                    (click)="addToCart(product)">
-              <mat-icon>add_shopping_cart</mat-icon>
-              Add to Cart
-            </button>
-          }
-        </mat-card-actions>
-      </mat-card>
-    }
+<div class="page-container">
+  <div class="product-container">
+    <div class="product-grid">
+      @for (product of products; track product.id) {
+        <mat-card class="product-card">
+          <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
+          <mat-card-content>
+            <p class="price">₮{{product.price | number:'1.0-0'}}</p>
+            <h3>{{product.name}}</h3>
+            <p class="stock" [class.out-of-stock]="product.quantity === 0">
+              <span class="status-dot"></span>
+              {{product.quantity > 0 ? product.quantity + ' in stock' : 'Out of stock'}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            @if (!authService.isAdmin()) {
+              <button mat-raised-button color="primary" 
+                      [disabled]="product.quantity === 0"
+                      (click)="addToCart(product)">
+                <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+                Add to Order
+              </button>
+            }
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </div>
+  
+  <div class="cart-sidebar" *ngIf="shouldShowCart()">
+    <app-cart></app-cart>
   </div>
 </div>
+
+<!--Jishee Product Card -->
+<!-- <div class="container">
+  <div class="card">
+    <div class="imgBx">
+      <img src="https://img.freepik.com/free-psd/black-tshirt-mockup-plain-tee-shirt-design-template-casual-wear-apparel-fashion-clothing-style-unisex-product-branding-mock-up_632498-30703.jpg?t=st=1737470781~exp=1737474381~hmac=c982024e62f97ad384337b369168bed91de6ab865df9264755b157786945754b&w=740">
+    </div>
+    <div class="contentBx">
+      <h2>Nike Shoes</h2>
+      <a href="#">Buy Now</a>
+    </div>
+  </div>
+</div> -->

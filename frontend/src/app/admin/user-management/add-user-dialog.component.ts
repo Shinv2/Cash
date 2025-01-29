@@ -42,7 +42,7 @@ import { FocusMonitor } from '@angular/cdk/a11y';
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Role</mat-label>
           <mat-select [(ngModel)]="user.role" name="role" required>
-            <mat-option value="user">User</mat-option>
+            <mat-option value="user">Merchant</mat-option>
             <mat-option value="admin">Admin</mat-option>
           </mat-select>
         </mat-form-field>

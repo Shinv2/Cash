@@ -1,24 +1,33 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { ProductsModule } from '../../../backend/src/products/products.module';
-import { CartModule } from '../../../backend/src/cart/cart.module';
-import { AdminModule } from '../../../backend/src/admin/admin.module';
+import { ProductManagementComponent } from './admin/product-management/product-management.component';
+import { CartManagementComponent } from './admin/cart-management/cart-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { NgModule } from '@angular/core';
 
-export const routes: Routes = [
+const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'products',
-    loadChildren: () => import('../../../backend/src/products/products.module').then(m => m.ProductsModule)
+    component:ProductManagementComponent
   },
   {
     path: 'cart',
-    loadChildren: () => import('../../../backend/src/cart/cart.module').then(m => m.CartModule)
+    component:CartManagementComponent
   },
   {
     path: 'admin',
-    loadChildren: () => import('../../../backend/src/admin/admin.module').then(m => m.AdminModule)
+    component:UserManagementComponent
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+
+export class AppRoutingModule {}
+

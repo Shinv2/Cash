@@ -74,6 +74,10 @@ import { EditUserDialogComponent } from './edit-user-dialog.component';
     }
     table {
       width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:none;
+      border:1px solid #ccc;
     }
   `]
 })
