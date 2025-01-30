@@ -1,6 +1,6 @@
 # Shopping Website
 
-A full-stack e-commerce website built with Angular, NestJS, and PostgreSQL.
+A full-stack POS/cashier eccm website built with Angular, NestJS, and PostgreSQL.
 
 ## Features
 
